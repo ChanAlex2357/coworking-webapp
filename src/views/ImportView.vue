@@ -1,5 +1,5 @@
 <script>
-import ImportButton from '@/components/organics/ImportButton.vue'
+import ImportForm from '@/components/organics/ImportForm.vue'
 export default {
   data() {
     return {
@@ -9,7 +9,7 @@ export default {
     }
   },
   components: {
-    ImportButton,
+    ImportForm,
   },
 }
 </script>
@@ -18,25 +18,25 @@ export default {
   <div class="container py-5">
     <div class="row justify-content-center">
       <div class="mb-3 col-md-6">
-        <ImportButton
+        <ImportForm
           title="🏢 Import des Espaces"
           apiEndpoint="http://localhost:9000/api/import/espace"
         />
       </div>
       <div class="mb-3 col-md-6">
-        <ImportButton
+        <ImportForm
           title="🔧 Import des Options"
           apiEndpoint="http://localhost:9000/api/import/option"
         />
       </div>
       <div class="mb-3 col-md-6">
-        <ImportButton
+        <ImportForm
           title="🗓️ Import des Reservation"
           apiEndpoint="http://localhost:9000/api/import/reservation"
         />
       </div>
       <div class="mb-3 col-md-6">
-        <ImportButton
+        <ImportForm
           title="💳 Import des Paiements"
           apiEndpoint="http://localhost:9000/api/import/paiement"
         />

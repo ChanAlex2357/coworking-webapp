@@ -4,6 +4,8 @@ import HomeView from '@/views/HomeView.vue'
 import AdminLoginView from '@/views/AdminLoginView.vue'
 import AdminDashboardView from '@/views/admin/AdminDashboardView.vue'
 import ImportView from '@/views/ImportView.vue'
+import EspacesView from '@/views/EspacesView.vue'
+import Reservation from '@/views/Reservation.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -31,6 +33,15 @@ const router = createRouter({
       path: '/import',
       name: 'import',
       component: ImportView,
+    },
+    {
+      path: '/espace',
+      name: 'espace',
+      component: EspacesView,
+    },
+    {
+      path: '/reservation/:espace',
+      component: Reservation,
     },
   ],
 })
