@@ -40,7 +40,7 @@ const router = createRouter({
       component: EspacesView,
     },
     {
-      path: '/reservation/:espace',
+      path: '/reservation/:espace/:date',
       component: Reservation,
     },
   ],

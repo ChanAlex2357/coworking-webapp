@@ -4,7 +4,7 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      date: Date.now().toString(),
+      date: Date.now(),
       espaceCreneauxs: [],
       loading: false,
       espaces: [],
@@ -39,8 +39,8 @@ export default {
           console.log(data.exception)
           throw new Error("Erreur lors de la recherche d'espace")
         }
-
         this.espaceCreneauxs = data.espaceCreneauxs
+        this.date = data.dateReservation
       } catch (error) {
         console.error(error)
       } finally {
@@ -59,7 +59,7 @@ export default {
         })
     },
     getReservationRef(espace) {
-      return '/reservation/' + espace.nom
+      return '/reservation/' + espace.nom + '/' + this.date.toString()
     },
   },
 }
