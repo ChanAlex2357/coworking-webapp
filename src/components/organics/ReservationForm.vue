@@ -6,9 +6,10 @@ export default {
     return {
       creneaux: [],
       durees: [1, 2, 3, 4],
-      userId: 'USR_12',
       duree: null,
       heureDebut: null,
+      options: [],
+      u: this.$jsonfromsession('u'),
     }
   },
   props: {
@@ -17,12 +18,13 @@ export default {
       required: true,
     },
     dateReservation: {
-      type: Date,
+      type: String,
       required: true,
     },
   },
   created() {
     this.getCreneaux()
+    this.getOptions()
   },
   methods: {
     getCreneaux() {
@@ -36,14 +38,33 @@ export default {
           console.error(error)
         })
     },
+    getOptions() {
+      axios
+        .get('http://localhost:9000/api/options')
+        .then((response) => {
+          console.log(response.data)
+          this.options = response.data.data
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    },
     async reservationHandler() {
-      axios.post('http://localhost:9000/api/reservations', {
-        userId: this.userId,
-        espaceName: this.espace,
-        dateReservation: this.dateReservation,
-        duree: this.duree,
-        heureDebut: this.heureDebut,
-      })
+      axios
+        .post('http://localhost:9000/api/reservations', {
+          userId: this.u.id,
+          espaceName: this.espace,
+          dateReservation: this.dateReservation,
+          duree: this.duree,
+          heureDebut: this.heureDebut,
+          options: this.options,
+        })
+        .then((response) => {
+          alert(response.data.message)
+        })
+        .catch((err) => {
+          alert(err)
+        })
     },
   },
 }
@@ -86,6 +107,20 @@ export default {
             {{ duration }}
           </option>
         </select>
+      </div>
+      <div class="col mb-3">
+        <div class="row">
+          <h5>Choix des options</h5>
+          <div class="col d-flex gap-2" v-for="(opt, index) in options" :key="index">
+            <input
+              type="checkbox"
+              v-model="opt.selected"
+              v-bind:id="opt.id"
+              class="form-check-input"
+            />
+            <label class="form-check-label" v-bind:for="opt.id">{{ opt.option }}</label>
+          </div>
+        </div>
       </div>
       <div class="py-4">
         <button type="submit" class="btn btn-dark w-100">Réserver</button>

@@ -16,7 +16,7 @@ export default {
 
       <h1>Page de reservation</h1>
     </div>
-    <div class="col-6 mx-auto">
+    <div class="col-8 mx-auto">
       <ReservationForm
         v-bind:espace="this.$route.params.espace"
         v-bind:date-reservation="this.$route.params.date"

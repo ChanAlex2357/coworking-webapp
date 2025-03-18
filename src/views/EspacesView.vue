@@ -8,6 +8,7 @@ export default {
       espaceCreneauxs: [],
       loading: false,
       espaces: [],
+      u: this.$jsonfromsession('u'),
     }
   },
   created() {
@@ -70,7 +71,7 @@ export default {
     <div class="col-6 mx-auto my-3">
       <form @submit.prevent="filtrerEspaces">
         <div class="d-flex align-items-center mb3">
-          <span class="h2"> Filtre de recherche </span>
+          <span class="h2"> Filtre de recherche {{}}</span>
         </div>
         <div class="row">
           <div class="col-6 d-flex align-items-center">
@@ -86,9 +87,9 @@ export default {
             />
           </div>
           <div class="col-6 d-flex align-items-center">
-            <button type="submit" class="btn btn-primary" :disabled="loading">
+            <button type="submit" class="btn btn-dark" :disabled="loading">
               <span v-if="loading">...</span>
-              <span v-else>Filter</span>
+              <span v-else>Valider</span>
             </button>
           </div>
         </div>
@@ -119,7 +120,7 @@ export default {
           <tr v-for="(item, index) in espaceCreneauxs" :key="index">
             <th scope="row" class="bg-light">{{ item.espace.nom }}</th>
             <td
-              class="case"
+              class="bg-white"
               :class="getStyle(cr.etat)"
               v-for="(cr, i) in item.creneaux"
               :key="i"
@@ -144,9 +145,5 @@ export default {
 }
 .cr-13 {
   background-color: rgb(208, 15, 1) !important;
-}
-
-.case {
-  border-width: 1px;
 }
 </style>

@@ -1,4 +1,5 @@
-<script setup></script>
+<script setup>
+</script>
 
 <template>
   <header class="p-3 bg-light text-white" v-if="$route.path !== '/' && $route.path !== '/admin'">
@@ -12,6 +13,7 @@
         <ul class="nav col-12">
           <RouterLink to="/import" class="nav-link px-2 text-secondary">Import data</RouterLink>
           <RouterLink to="/espace" class="nav-link px-2 text-secondary">Espaces</RouterLink>
+          <RouterLink to="/my-reservations" class="nav-link px-2 text-secondary">Mes reservations</RouterLink>
         </ul>
       </div>
     </div>

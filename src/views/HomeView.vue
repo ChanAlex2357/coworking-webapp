@@ -3,6 +3,7 @@ export default {
   name: 'HomeView',
   data() {
     return {
+      u: this.$jsonfromsession('u'),
       message: 'Bienvenue sur notre application !',
     }
   },
@@ -13,6 +14,7 @@ export default {
   <div class="home-container">
     <h1>{{ message }}</h1>
     <p>Vous êtes maintenant connecté à votre espace personnel.</p>
+    <p>USER : {{ u.id }}</p>
   </div>
 </template>
 

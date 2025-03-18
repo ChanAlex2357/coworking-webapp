@@ -6,6 +6,7 @@ import AdminDashboardView from '@/views/admin/AdminDashboardView.vue'
 import ImportView from '@/views/ImportView.vue'
 import EspacesView from '@/views/EspacesView.vue'
 import Reservation from '@/views/Reservation.vue'
+import ReservationUser from '@/views/ReservationUser.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -42,6 +43,14 @@ const router = createRouter({
     {
       path: '/reservation/:espace/:date',
       component: Reservation,
+    },
+    {
+      path: '/my-reservations',
+      component: ReservationUser,
+    },
+    {
+      path: '/paiement/:resId',
+      component: ReservationUser,
     },
   ],
 })

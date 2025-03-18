@@ -1,42 +1,37 @@
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {
-      tel: 'jean@client.com',
+      tel: '0381034567',
       password: 'client123',
       loading: false,
       error: null,
     }
   },
   methods: {
-    async handleLogin() {
+    handleLogin() {
       this.loading = true
       this.error = null
-      try {
-        // Envoyer les informations d'authentification à l'API
-        const response = await fetch('http://localhost:9000/api/auth', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            login: this.tel,
-            password: this.password,
-          }),
+      axios
+        .post('http://localhost:9000/api/auth', {
+          login: this.tel,
+          password: this.password,
         })
-
-        if (!response.ok) {
-          throw new Error("Échec de l'authentification")
-        }
-        const data = await response.json()
-        console.log('Authentification réussie:', data)
-        this.$router.push('/home')
-      } catch (err) {
-        console.error('Erreur lors de la connexion:', err)
-        this.error = 'Erreur de connexion. Veuillez réessayer.'
-      } finally {
-        this.loading = false
-      }
+        .then((response) => {
+          const data = response.data
+          console.log('Authentification réussie:', data)
+          this.$jsontosession('u', data.utilisateur)
+          this.$router.push('/home')
+        })
+        .catch((err) => {
+          console.error('Erreur lors de la connexion:', err)
+          this.error = 'Erreur de connexion. Veuillez réessayer.'
+        })
+        .finally(() => {
+          this.loading = false
+        })
     },
   },
 }
@@ -72,7 +67,7 @@ export default {
                     <label class="form-label" for="email">Telephone</label>
                     <input
                       class="form-control form-control-lg"
-                      type="email"
+                      type="tel"
                       id="email"
                       v-model="tel"
                       required

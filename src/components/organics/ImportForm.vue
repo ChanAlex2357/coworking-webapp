@@ -70,12 +70,11 @@ export default {
             required
           />
         </div>
-
         <div v-if="error" class="alert alert-danger">
           {{ error }}
         </div>
 
-        <button type="submit" class="btn btn-primary w-100" :disabled="loading || !fichier">
+        <button type="submit" class="btn btn-dark w-100" :disabled="loading || !fichier">
           <span v-if="loading">Importation en cours...</span>
           <span v-else>Importer</span>
         </button>
